@@ -1,0 +1,113 @@
+web-1  | Operations to perform:
+web-1  |   Apply all migrations: admin, auth, authtoken, cats, contenttypes, sessions, showcase
+web-1  | Running migrations:
+web-1  |   No migrations to apply.
+web-1  | Группы настроены: Владельцы котов, Наблюдатели, Участники голосования
+web-1  | Справочник достижений готов.
+web-1  | 
+web-1  | 164 static files copied to '/app/staticfiles'.
+web-1  | [2026-10-26 07:43:54 +0000] [7] [INFO] Starting gunicorn 23.0.0
+web-1  | [2026-10-26 07:43:54 +0000] [7] [INFO] Listening at: http://0.0.0.0:8000 (7)
+web-1  | [2026-10-26 07:43:54 +0000] [7] [INFO] Using worker: sync
+web-1  | [2026-10-26 07:43:54 +0000] [12] [INFO] Booting worker with pid: 12
+web-1  | [2026-10-26 07:43:54 +0000] [13] [INFO] Booting worker with pid: 13
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:43:57 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:07 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:17 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:28 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:38 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:48 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:44:58 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:08 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:18 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:29 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:39 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:49 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:45:59 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:46:09 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:46:19 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:46:29 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:46:40 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:46:50 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:00 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:10 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:20 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:30 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:41 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:47:51 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:47:59 +0300] "GET /api/docs/ HTTP/1.1" 200 731 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:47:59 +0300] "GET /static/vendor/redoc.standalone.js HTTP/1.1" 304 0 "http://localhost:8000/api/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:00 +0300] "GET /api/openapi.json HTTP/1.1" 200 60232 "http://localhost:8000/api/docs/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:01 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:11 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:21 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/achievements/ HTTP/1.1" 200 446 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/achievements/1/ HTTP/1.1" 200 118 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/users/me/ HTTP/1.1" 200 106 "-" "Python-urllib/3.12"
+web-1  | Unauthorized: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/ HTTP/1.1" 401 82 "-" "Python-urllib/3.12"
+web-1  | Unauthorized: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/cats/ HTTP/1.1" 401 82 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/cats/ HTTP/1.1" 400 337 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/cats/ HTTP/1.1" 400 126 "-" "Python-urllib/3.12"
+web-1  | Forbidden: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/cats/ HTTP/1.1" 403 117 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "POST /api/cats/ HTTP/1.1" 201 93 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/?search=%D0%9C%D1%83%D1%80%D0%BA%D0%B0&owner=anna&birth_year=2022&ordering=name&page_size=1 HTTP/1.1" 200 145 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/17/ HTTP/1.1" 200 93 "-" "Python-urllib/3.12"
+web-1  | Not Found: /api/cats/17/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "PATCH /api/cats/17/ HTTP/1.1" 404 50 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "PUT /api/cats/17/ HTTP/1.1" 200 92 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "PATCH /api/cats/17/ HTTP/1.1" 200 91 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/?owner=boris HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/?ordering=id&page_size=1 HTTP/1.1" 200 200 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/cats/?birth_year=abc HTTP/1.1" 400 67 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/openapi.json HTTP/1.1" 200 60232 "-" "Python-urllib/3.12"
+web-1  | Not Acceptable: /api/docs/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:26 +0300] "GET /api/docs/ HTTP/1.1" 406 18 "-" "Python-urllib/3.12"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:31 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:42 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/auth/token/ HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/achievements/ HTTP/1.1" 200 446 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/achievements/1/ HTTP/1.1" 200 118 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/users/me/ HTTP/1.1" 200 106 "-" "Python-urllib/3.12"
+web-1  | Unauthorized: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/ HTTP/1.1" 401 82 "-" "Python-urllib/3.12"
+web-1  | Unauthorized: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/cats/ HTTP/1.1" 401 82 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/cats/ HTTP/1.1" 400 337 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/cats/ HTTP/1.1" 400 126 "-" "Python-urllib/3.12"
+web-1  | Forbidden: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/cats/ HTTP/1.1" 403 117 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "DELETE /api/cats/17/ HTTP/1.1" 204 0 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "POST /api/cats/ HTTP/1.1" 201 93 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/?search=%D0%9C%D1%83%D1%80%D0%BA%D0%B0&owner=anna&birth_year=2022&ordering=name&page_size=1 HTTP/1.1" 200 145 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/18/ HTTP/1.1" 200 93 "-" "Python-urllib/3.12"
+web-1  | Not Found: /api/cats/18/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "PATCH /api/cats/18/ HTTP/1.1" 404 50 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "PUT /api/cats/18/ HTTP/1.1" 200 92 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "PATCH /api/cats/18/ HTTP/1.1" 200 91 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/?owner=boris HTTP/1.1" 200 52 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/?ordering=id&page_size=1 HTTP/1.1" 200 200 "-" "Python-urllib/3.12"
+web-1  | Bad Request: /api/cats/
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/cats/?birth_year=abc HTTP/1.1" 400 67 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/openapi.json HTTP/1.1" 200 60232 "-" "Python-urllib/3.12"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:48:45 +0300] "GET /api/docs/ HTTP/1.1" 200 731 "-" "Python-urllib/3.12"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:48:52 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:49:02 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"
+web-1  | 172.18.0.1 - - [26/Oct/2026:10:49:12 +0300] "GET /api/cats/?search=%D0%9C%D1%83%D1%80%D0%BA%D0%B0&owner=anna&ordering=name&page_size=1 HTTP/1.1" 200 143 "-" "PostmanRuntime/7.56.1"
+web-1  | 127.0.0.1 - - [26/Oct/2026:10:49:12 +0300] "GET /health/ HTTP/1.1" 200 16 "-" "Python-urllib/3.10"

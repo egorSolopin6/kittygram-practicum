@@ -1,0 +1,1664 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kittygram Практикум",
+    "version": "2.0.0",
+    "description": "Коты и достижения. Личные записи доступны только владельцу, наблюдателю и администратору. Публичная витрина не содержит личных полей."
+  },
+  "paths": {
+    "/api/achievements/": {
+      "get": {
+        "operationId": "achievements_list",
+        "description": "Публичный справочник достижений. Изменяется администратором в /admin/.",
+        "summary": "Справочник достижений",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedAchievementList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/achievements/{id}/": {
+      "get": {
+        "operationId": "achievements_retrieve",
+        "description": "Публичный справочник достижений. Изменяется администратором в /admin/.",
+        "summary": "Достижение по ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this достижение.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "achievements"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Achievement"
+                }
+              }
+            },
+            "description": ""
+          },
+          "404": {
+            "description": "Достижение не найдено."
+          }
+        }
+      }
+    },
+    "/api/auth/token/": {
+      "post": {
+        "operationId": "auth_token_create",
+        "summary": "Вход и получение токена",
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthTokenRequest"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthTokenRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Неверные имя пользователя или пароль."
+          }
+        }
+      }
+    },
+    "/api/cats/": {
+      "get": {
+        "operationId": "cats_list",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Список личных котов",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "birth_year",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "color",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "owner",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Имя владельца. Не расширяет доступ."
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedCatList"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права просмотра котов."
+          },
+          "404": {
+            "description": "Страница не существует."
+          }
+        }
+      },
+      "post": {
+        "operationId": "cats_create",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Создать своего кота",
+        "tags": [
+          "cats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Ошибка полей или ID достижения."
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права создания."
+          }
+        }
+      }
+    },
+    "/api/cats/{id}/": {
+      "get": {
+        "operationId": "cats_retrieve",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Личная карточка кота",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            },
+            "description": ""
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права просмотра."
+          },
+          "404": {
+            "description": "Нет такого доступного кота."
+          }
+        }
+      },
+      "put": {
+        "operationId": "cats_update",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Заменить данные своего кота",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CatRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Ошибка полей."
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права изменения."
+          },
+          "404": {
+            "description": "Нет такого доступного кота."
+          }
+        }
+      },
+      "patch": {
+        "operationId": "cats_partial_update",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Изменить отдельные поля кота",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCatRequest"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCatRequest"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCatRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Ошибка полей."
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права изменения."
+          },
+          "404": {
+            "description": "Нет такого доступного кота."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "cats_destroy",
+        "description": "Личные записи: только свои коты. Администратор видит всех.",
+        "summary": "Удалить своего кота",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          },
+          "400": {
+            "description": "Кот участвует в рейтинге."
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Нет права удаления."
+          },
+          "404": {
+            "description": "Нет такого доступного кота."
+          }
+        }
+      }
+    },
+    "/api/cats/{id}/vote/": {
+      "post": {
+        "operationId": "cats_vote_create",
+        "description": "Один выбор в день. Пустой POST отдаёт голос, DELETE отзывает свой сегодняшний голос.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vote"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Повторный голос или непустое тело."
+          },
+          "401": {
+            "description": "Требуется вход."
+          },
+          "403": {
+            "description": "Роль не разрешает голосование."
+          }
+        }
+      },
+      "delete": {
+        "operationId": "cats_vote_destroy",
+        "description": "Один выбор в день. Пустой POST отдаёт голос, DELETE отзывает свой сегодняшний голос.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/api/cats/mine/": {
+      "get": {
+        "operationId": "cats_mine_list",
+        "description": "Даже администратору этот список показывает только собственных котов.",
+        "summary": "Только собственные коты",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "cats"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedCatList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/cats/": {
+      "get": {
+        "operationId": "showcase_cats_list",
+        "description": "Витрина для голосования без владельцев и личных полей.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "color",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPublicCatList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/cats/{id}/": {
+      "get": {
+        "operationId": "showcase_cats_retrieve",
+        "description": "Витрина для голосования без владельцев и личных полей.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this кот.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicCat"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/daily/": {
+      "get": {
+        "operationId": "showcase_daily_list",
+        "description": "Дневной рейтинг. Фильтры date и cat, страницы page и page_size.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cat",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedDailyTopList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/daily/{id}/": {
+      "get": {
+        "operationId": "showcase_daily_retrieve",
+        "description": "Дневной рейтинг. Фильтры date и cat, страницы page и page_size.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "A unique integer value identifying this daily top.",
+            "required": true
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DailyTop"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/day/": {
+      "get": {
+        "operationId": "showcase_day_retrieve",
+        "description": "Лидер дня. При равенстве баллов побеждает меньший ID кота. Без голосов ответ 404.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string"
+            },
+            "description": "YYYY-MM-DD, не позже сегодня."
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DailyTop"
+                }
+              }
+            },
+            "description": ""
+          },
+          "400": {
+            "description": "Некорректная дата."
+          },
+          "404": {
+            "description": "Нет голосов за эту дату."
+          }
+        }
+      }
+    },
+    "/api/showcase/my-votes/": {
+      "get": {
+        "operationId": "showcase_my_votes_list",
+        "description": "Только голоса текущего пользователя. Фильтры date и cat.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cat",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedVoteList"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/showcase/week/": {
+      "get": {
+        "operationId": "showcase_week_retrieve",
+        "description": "Сумма голосов за семь дат включительно до end_date (по умолчанию сегодня).",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "color",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_date",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_size",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "showcase"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeekResponse"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/users/me/": {
+      "get": {
+        "operationId": "users_me_retrieve",
+        "description": "Собственный профиль и роли. Пароль и токен в ответ не включаются.",
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "tokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          },
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Achievement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Название"
+          },
+          "description": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Описание"
+          }
+        },
+        "required": [
+          "description",
+          "id",
+          "name"
+        ]
+      },
+      "AuthTokenRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 1,
+            "title": "Имя пользователя"
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 1,
+            "title": "Пароль"
+          }
+        },
+        "required": [
+          "password",
+          "username"
+        ]
+      },
+      "Cat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 16,
+            "minLength": 2
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 16,
+            "minLength": 3
+          },
+          "birth_year": {
+            "type": "integer",
+            "nullable": true
+          },
+          "owner": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "achievements": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Достижения"
+            },
+            "title": "Достижения"
+          }
+        },
+        "required": [
+          "color",
+          "id",
+          "name",
+          "owner"
+        ]
+      },
+      "CatRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 16
+          },
+          "color": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 16
+          },
+          "birth_year": {
+            "type": "integer",
+            "nullable": true
+          },
+          "achievements": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Достижения"
+            },
+            "title": "Достижения"
+          }
+        },
+        "required": [
+          "color",
+          "name"
+        ]
+      },
+      "DailyTop": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "cat": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PublicCat"
+              }
+            ],
+            "readOnly": true
+          },
+          "score": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "cat",
+          "date",
+          "id",
+          "score"
+        ]
+      },
+      "PaginatedAchievementList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Achievement"
+            }
+          }
+        }
+      },
+      "PaginatedCatList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cat"
+            }
+          }
+        }
+      },
+      "PaginatedDailyTopList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyTop"
+            }
+          }
+        }
+      },
+      "PaginatedPublicCatList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PublicCat"
+            }
+          }
+        }
+      },
+      "PaginatedVoteList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vote"
+            }
+          }
+        }
+      },
+      "PatchedCatRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 16
+          },
+          "color": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 16
+          },
+          "birth_year": {
+            "type": "integer",
+            "nullable": true
+          },
+          "achievements": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Достижения"
+            },
+            "title": "Достижения"
+          }
+        }
+      },
+      "Profile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Имя пользователя",
+            "description": "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "title": "Имя"
+            },
+            "readOnly": true
+          },
+          "is_staff": {
+            "type": "boolean",
+            "readOnly": true,
+            "title": "Статус персонала",
+            "description": "Отметьте, если пользователь может входить в административную часть сайта."
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "readOnly": true,
+            "title": "Статус суперпользователя",
+            "description": "Указывает, что пользователь имеет все права без явного их назначения."
+          }
+        },
+        "required": [
+          "groups",
+          "id",
+          "is_staff",
+          "is_superuser",
+          "username"
+        ]
+      },
+      "PublicCat": {
+        "type": "object",
+        "description": "Only fields intentionally published for voting.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "color": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "color",
+          "id",
+          "name"
+        ]
+      },
+      "TokenResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "Vote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "cat_id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cat_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "cat_id",
+          "cat_name",
+          "created_at",
+          "date",
+          "id"
+        ]
+      },
+      "WeekEntry": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "integer"
+          },
+          "cat_id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "cat_id",
+          "color",
+          "name",
+          "rank",
+          "score"
+        ]
+      },
+      "WeekResponse": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "next": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "previous": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WeekEntry"
+            }
+          },
+          "date_from": {
+            "type": "string",
+            "format": "date"
+          },
+          "date_to": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "count",
+          "date_from",
+          "date_to",
+          "next",
+          "previous",
+          "results"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      },
+      "tokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Token-based authentication with required prefix \"Token\""
+      }
+    }
+  }
+}

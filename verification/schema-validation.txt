@@ -1,0 +1,5 @@
+Проверка схемы запущенного проекта
+Дата: 26 октября 2026 года
+Команда: docker compose exec -T web python manage.py spectacular --file /tmp/openapi.json --format openapi-json --validate --fail-on-warn
+Код завершения: 0
+Стандартный вывод и поток ошибок: пустые.

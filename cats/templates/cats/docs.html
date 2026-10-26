@@ -1,0 +1,16 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kittygram — документация API</title>
+  <style>body {margin: 0; font-family: Arial, sans-serif} header {padding: 16px 24px; background: #f3f5f7} a {color: #195c86}</style>
+</head>
+<body>
+  <header><strong>Kittygram</strong> · <a href="{% url 'openapi' %}">OpenAPI JSON</a> · <a href="/admin/">Админ-панель</a></header>
+  <div id="redoc"></div>
+  <script src="{% static 'vendor/redoc.standalone.js' %}"></script>
+  <script>Redoc.init('{% url "openapi" %}', {disableGoogleFont: true, hideDownloadButton: false}, document.getElementById('redoc'));</script>
+</body>
+</html>

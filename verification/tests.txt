@@ -1,0 +1,10 @@
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.............................
+----------------------------------------------------------------------
+Ran 29 tests in 2.072s
+
+OK
+Destroying test database for alias 'default'...
+System check identified no issues (0 silenced).
+No changes detected

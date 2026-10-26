@@ -1,0 +1,428 @@
+{
+  "token_anna": {
+    "method": "POST",
+    "path": "/api/auth/token/",
+    "user": "anonymous",
+    "request": {
+      "username": "anna",
+      "password": "<скрыт>"
+    },
+    "status": 200,
+    "response": {
+      "token": "<скрыт>"
+    }
+  },
+  "token_boris": {
+    "method": "POST",
+    "path": "/api/auth/token/",
+    "user": "anonymous",
+    "request": {
+      "username": "boris",
+      "password": "<скрыт>"
+    },
+    "status": 200,
+    "response": {
+      "token": "<скрыт>"
+    }
+  },
+  "token_viewer": {
+    "method": "POST",
+    "path": "/api/auth/token/",
+    "user": "anonymous",
+    "request": {
+      "username": "viewer",
+      "password": "<скрыт>"
+    },
+    "status": 200,
+    "response": {
+      "token": "<скрыт>"
+    }
+  },
+  "token_demo_admin": {
+    "method": "POST",
+    "path": "/api/auth/token/",
+    "user": "anonymous",
+    "request": {
+      "username": "demo_admin",
+      "password": "<скрыт>"
+    },
+    "status": 200,
+    "response": {
+      "token": "<скрыт>"
+    }
+  },
+  "health": {
+    "method": "GET",
+    "path": "/health/",
+    "user": "anonymous",
+    "request": null,
+    "status": 200,
+    "response": {
+      "status": "ok"
+    }
+  },
+  "achievements": {
+    "method": "GET",
+    "path": "/api/achievements/",
+    "user": "anonymous",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 3,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 1,
+          "name": "Знает команду ко мне",
+          "description": "Приходит по зову хозяина."
+        },
+        {
+          "id": 2,
+          "name": "Ловит игрушечную мышь",
+          "description": "Уверенно ловит и приносит игрушку."
+        },
+        {
+          "id": 3,
+          "name": "Путешественник",
+          "description": "Спокойно переносит поездки в переноске."
+        }
+      ]
+    }
+  },
+  "achievement": {
+    "method": "GET",
+    "path": "/api/achievements/1/",
+    "user": "anonymous",
+    "request": null,
+    "status": 200,
+    "response": {
+      "id": 1,
+      "name": "Знает команду ко мне",
+      "description": "Приходит по зову хозяина."
+    }
+  },
+  "profile": {
+    "method": "GET",
+    "path": "/api/users/me/",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "id": 2,
+      "username": "anna",
+      "groups": [
+        "Владельцы котов"
+      ],
+      "is_staff": true,
+      "is_superuser": false
+    }
+  },
+  "private_unauthorized": {
+    "method": "GET",
+    "path": "/api/cats/",
+    "user": "anonymous",
+    "request": null,
+    "status": 401,
+    "response": {
+      "detail": "Учетные данные не были предоставлены."
+    }
+  },
+  "unauthorized_create": {
+    "method": "POST",
+    "path": "/api/cats/",
+    "user": "anonymous",
+    "request": {
+      "name": "Мурка",
+      "color": "gray",
+      "birth_year": 2022,
+      "achievements": [
+        1
+      ]
+    },
+    "status": 401,
+    "response": {
+      "detail": "Учетные данные не были предоставлены."
+    }
+  },
+  "invalid_fields": {
+    "method": "POST",
+    "path": "/api/cats/",
+    "user": "anna",
+    "request": {
+      "name": "А",
+      "color": "x",
+      "birth_year": 1899
+    },
+    "status": 400,
+    "response": {
+      "name": [
+        "Убедитесь, что это значение содержит не менее 2 символов."
+      ],
+      "color": [
+        "Убедитесь, что это значение содержит не менее 3 символов."
+      ],
+      "birth_year": [
+        "Год рождения должен быть от 1900 до текущего года."
+      ]
+    }
+  },
+  "invalid_achievement": {
+    "method": "POST",
+    "path": "/api/cats/",
+    "user": "anna",
+    "request": {
+      "name": "Мурка",
+      "color": "gray",
+      "achievements": [
+        999999
+      ]
+    },
+    "status": 400,
+    "response": {
+      "achievements": [
+        "Недопустимый первичный ключ \"999999\" - объект не существует."
+      ]
+    }
+  },
+  "viewer_forbidden": {
+    "method": "POST",
+    "path": "/api/cats/",
+    "user": "viewer",
+    "request": {
+      "name": "Мурка",
+      "color": "gray"
+    },
+    "status": 403,
+    "response": {
+      "detail": "У вас недостаточно прав для выполнения данного действия."
+    }
+  },
+  "create": {
+    "method": "POST",
+    "path": "/api/cats/",
+    "user": "anna",
+    "request": {
+      "name": "Мурка",
+      "color": "orange",
+      "birth_year": 2022,
+      "achievements": [
+        1
+      ]
+    },
+    "status": 201,
+    "response": {
+      "id": 18,
+      "name": "Мурка",
+      "color": "orange",
+      "birth_year": 2022,
+      "owner": 2,
+      "achievements": [
+        1
+      ]
+    }
+  },
+  "list": {
+    "method": "GET",
+    "path": "/api/cats/?search=%D0%9C%D1%83%D1%80%D0%BA%D0%B0&owner=anna&birth_year=2022&ordering=name&page_size=1",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 18,
+          "name": "Мурка",
+          "color": "orange",
+          "birth_year": 2022,
+          "owner": 2,
+          "achievements": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "detail": {
+    "method": "GET",
+    "path": "/api/cats/18/",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "id": 18,
+      "name": "Мурка",
+      "color": "orange",
+      "birth_year": 2022,
+      "owner": 2,
+      "achievements": [
+        1
+      ]
+    }
+  },
+  "foreign_update": {
+    "method": "PATCH",
+    "path": "/api/cats/18/",
+    "user": "boris",
+    "request": {
+      "color": "white"
+    },
+    "status": 404,
+    "response": {
+      "detail": "Страница не найдена."
+    }
+  },
+  "replace": {
+    "method": "PUT",
+    "path": "/api/cats/18/",
+    "user": "anna",
+    "request": {
+      "name": "Мурка",
+      "color": "white",
+      "birth_year": 2022,
+      "achievements": [
+        1
+      ]
+    },
+    "status": 200,
+    "response": {
+      "id": 18,
+      "name": "Мурка",
+      "color": "white",
+      "birth_year": 2022,
+      "owner": 2,
+      "achievements": [
+        1
+      ]
+    }
+  },
+  "patch": {
+    "method": "PATCH",
+    "path": "/api/cats/18/",
+    "user": "anna",
+    "request": {
+      "color": "gray"
+    },
+    "status": 200,
+    "response": {
+      "id": 18,
+      "name": "Мурка",
+      "color": "gray",
+      "birth_year": 2022,
+      "owner": 2,
+      "achievements": [
+        1
+      ]
+    }
+  },
+  "owner_filter": {
+    "method": "GET",
+    "path": "/api/cats/?owner=boris",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 0,
+      "next": null,
+      "previous": null,
+      "results": []
+    }
+  },
+  "pagination": {
+    "method": "GET",
+    "path": "/api/cats/?ordering=id&page_size=1",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 7,
+      "next": "http://127.0.0.1:8000/api/cats/?ordering=id&page=2&page_size=1",
+      "previous": null,
+      "results": [
+        {
+          "id": 4,
+          "name": "Луна",
+          "color": "black",
+          "birth_year": 2022,
+          "owner": 2,
+          "achievements": []
+        }
+      ]
+    }
+  },
+  "invalid_year_filter": {
+    "method": "GET",
+    "path": "/api/cats/?birth_year=abc",
+    "user": "anna",
+    "request": null,
+    "status": 400,
+    "response": {
+      "birth_year": "Нужен год от 1900 до текущего."
+    }
+  },
+  "schema": {
+    "method": "GET",
+    "path": "/api/openapi.json",
+    "user": "anonymous",
+    "request": null,
+    "status": 200,
+    "response": {
+      "openapi": "3.0.3",
+      "title": "Kittygram Практикум",
+      "path_count": 15
+    }
+  },
+  "docs": {
+    "method": "GET",
+    "path": "/api/docs/",
+    "user": "anonymous",
+    "request": null,
+    "status": 200,
+    "response": "Страница ReDoc; HTML, локальный скрипт /static/vendor/redoc.standalone.js"
+  },
+  "postman_list": {
+    "method": "GET",
+    "path": "/api/cats/?owner=anna&ordering=-id&page_size=1",
+    "user": "anna",
+    "request": null,
+    "status": 200,
+    "response": {
+      "count": 7,
+      "next": "http://127.0.0.1:8000/api/cats/?ordering=-id&owner=anna&page=2&page_size=1",
+      "previous": null,
+      "results": [
+        {
+          "id": 18,
+          "name": "Мурка",
+          "color": "gray",
+          "birth_year": 2022,
+          "owner": 2,
+          "achievements": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "delete": {
+    "method": "DELETE",
+    "path": "/api/cats/18/",
+    "user": "anna",
+    "request": null,
+    "status": 204,
+    "response": ""
+  },
+  "deleted_detail": {
+    "method": "GET",
+    "path": "/api/cats/18/",
+    "user": "anna",
+    "request": null,
+    "status": 404,
+    "response": {
+      "detail": "Страница не найдена."
+    }
+  }
+}
